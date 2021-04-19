@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import seaborn as sns
-from funcsigs import signature
+#from funcsigs import signature
 from matplotlib.lines import Line2D
 from sklearn.metrics import (auc, average_precision_score,
                              precision_recall_curve, roc_curve)
@@ -320,35 +320,35 @@ def roc_plot(actual, model_probs, model_names, figsize=(10,10)):
     plt.show()
 
 
-def precision_recall_plot(targs, preds, figsize=(6,6)):
-    """
-    Plots the precision recall curve
-    ----------
-    targs: array-like true class labels
-    preds: array-like predicted probabilities
-    figsize: size of figure
+# def precision_recall_plot(targs, preds, figsize=(6,6)):
+#     """
+#     Plots the precision recall curve
+#     ----------
+#     targs: array-like true class labels
+#     preds: array-like predicted probabilities
+#     figsize: size of figure
 
-    Returns:
-    -------
-        A precision and recall curve
-    """
-    average_precision = average_precision_score(targs, preds)
-    precision, recall, _ = precision_recall_curve(targs, preds)
-    plt.figure(figsize=figsize)
-    step_kwargs = ({'step': 'post'}
-                   if 'step' in signature(plt.fill_between).parameters
-                   else {})
-    plt.step(recall, precision, color='b', alpha=0.2,
-             where='post')
-    plt.fill_between(recall, precision, alpha=0.2, color='b', **step_kwargs)
+#     Returns:
+#     -------
+#         A precision and recall curve
+#     """
+#     average_precision = average_precision_score(targs, preds)
+#     precision, recall, _ = precision_recall_curve(targs, preds)
+#     plt.figure(figsize=figsize)
+#     step_kwargs = ({'step': 'post'}
+#                    if 'step' in signature(plt.fill_between).parameters
+#                    else {})
+#     plt.step(recall, precision, color='b', alpha=0.2,
+#              where='post')
+#     plt.fill_between(recall, precision, alpha=0.2, color='b', **step_kwargs)
 
-    plt.xlabel('Recall')
-    plt.ylabel('Precision')
-    plt.ylim([0.0, 1.05])
-    plt.xlim([0.0, 1.0])
-    plt.title('2-class Precision-Recall curve: AP={0:0.2f}'.format(
-        average_precision))
-    plt.show()
+#     plt.xlabel('Recall')
+#     plt.ylabel('Precision')
+#     plt.ylim([0.0, 1.05])
+#     plt.xlim([0.0, 1.0])
+#     plt.title('2-class Precision-Recall curve: AP={0:0.2f}'.format(
+#         average_precision))
+#     plt.show()
 
 
 def make_listy(p):
